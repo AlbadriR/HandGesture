@@ -14,11 +14,13 @@ import { drawHand } from "./utilities";
 
 ///////// NEW STUFF IMPORTS
 import * as fp from "fingerpose";
-import victory from "./victory.png";
-import thumbs_up from "./thumbs_up.png";
-import midlle_finger from "./midlle_finger.png"
+import victory from "./img/victory.png";
+import thumbs_up from "./img/thumbs_up.png";
+import midlle_finger from "./img/midlle_finger.png"
+import italiahand from "./img/italiahandpos.png"
 
 import {midlleFingerGesture} from './MiddleFinger'
+import {italiahandpos} from './italiahand.js'
 ///////// NEW STUFF IMPORTS
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
 
   ///////// NEW STUFF ADDED STATE HOOK
   const [emoji, setEmoji] = useState(null);
-  const images = { thumbs_up: thumbs_up, victory: victory , midlle_finger: midlle_finger};
+  const images = { thumbs_up: thumbs_up, victory: victory , midlle_finger: midlle_finger, italiahand: italiahand};
   ///////// NEW STUFF ADDED STATE HOOK
 
   const runHandpose = async () => {
@@ -69,7 +71,8 @@ function App() {
         const GE = new fp.GestureEstimator([
           fp.Gestures.VictoryGesture,
           fp.Gestures.ThumbsUpGesture,
-          midlleFingerGesture
+          //midlleFingerGesture,
+          italiahandpos
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4); // 4 is the precision
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
